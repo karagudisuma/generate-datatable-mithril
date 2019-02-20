@@ -1,4 +1,3 @@
 const m = require('mithril');
-const MainView = require('./MainView');
-
-m.mount(document.body, { view: MainView });
+const TableBody = require('./TableBody');
+m.mount(document.getElementById("test"), {view : TableBody});
