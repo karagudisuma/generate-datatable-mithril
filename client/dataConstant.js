@@ -21,4 +21,4 @@ function generateData(rowNum){
 generateData(100);
 
 exports.reportData = reportData;
-exports.generateData = generateData();
+exports.generateData = generateData;
