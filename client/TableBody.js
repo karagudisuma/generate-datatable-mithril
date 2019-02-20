@@ -6,7 +6,10 @@ let TableBody = {
     data: dataConstant.reportData.data
   },
   view: function(vnode) {
-    let reportData = vnode.state.current.data;
+    let indexRowInTable = vnode.attrs.indexRowInTable;
+    let totalRowsInArr = vnode.attrs.totalRowsInArr;
+    let numRowsInTable = vnode.attrs.numRowsInTable;
+    let reportData = vnode.state.current.data.splice(indexRowInTable, numRowsInTable);
     let i, tBody = "";
     return reportData.map(data =>
       m("tr", { "data-row-index": i }, [

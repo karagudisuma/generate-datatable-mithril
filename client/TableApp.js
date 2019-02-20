@@ -119,7 +119,7 @@ let TableApp = {
                     m("table", { "class": "f6 w-100 mw8 center b--black-20 ba", "cellspacing": "0" },
                         [
                             m("thead", { "id": "table-header" }, m(TableHeader)),
-                            m("tbody", { "class": "lh-copy", "id": "table-body" }, m(TableBody))
+                            m("tbody", { "class": "lh-copy", "id": "table-body" }, m(TableBody, {numRowsInTable: 20, indexRowInTable: 5, totalRowsInArr: 100, }))
                         ]
                     )
                 )
