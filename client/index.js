@@ -1,8 +1,5 @@
 const m = require('mithril');
-const TableBody = require('./TableBody');
-const TableHeader = require('./TableHeader');
+const TableApp = require('./TableApp.js');
 
-m.mount(document.getElementById("table-body"), {view : TableBody});
-m.mount(document.getElementById("table-header"), {view : TableHeader});
-
+m.mount(document.getElementById("table"), TableApp);
 
