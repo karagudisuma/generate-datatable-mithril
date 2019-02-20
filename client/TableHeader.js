@@ -1,7 +1,7 @@
 const m = require("mithril");
 const dataConstant = require("./dataConstant.js");
 
-let TableHeader = {
+const TableHeader = {
     view: function () {
         cols = dataConstant.reportData.cols;
         return m("tr", [

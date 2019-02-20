@@ -3,7 +3,7 @@ const dataConstant = require('./dataConstant.js');
 const TableBody = require('./TableBody');
 const TableHeader = require('./TableHeader');
  
-let TableApp = {
+const TableApp = {
     current: {
         numRowsInTable: 10,
         totalRowsInArr: 100,

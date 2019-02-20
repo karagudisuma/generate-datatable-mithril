@@ -1,7 +1,7 @@
 const m = require("mithril");
 const dataConstant = require("./dataConstant.js");
 
-let TableBody = {
+const TableBody = {
   current: {
     data: dataConstant.reportData.data
   },
