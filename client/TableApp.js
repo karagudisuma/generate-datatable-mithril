@@ -1,15 +1,15 @@
 const m = require('mithril');
-const dataConstant = require('./dataConstant.js');
 const TableBody = require('./TableBody');
 const TableHeader = require('./TableHeader');
+const Helpers = require('./TableHelper.js');
  
+
 const TableApp = {
-    current: {
-        numRowsInTable: 10,
-        totalRowsInArr: 100,
-        indexRowInTable: 1
+    oninit: function(data){
+        this.tableHelper = new Helpers.tableHelper(10, 100, 1);
     },
-    view: function (vnode) {
+    view: function (ctrl) {
+        let {indexRowInTable, totalRowsInArr, numRowsInTable} = ctrl.state.tableHelper;
         return m("div", { "class": "pt1 pb1 mv3 mh6-l bg-light-gray" },
             m("div",
                 m("div", { "class": "flex items-center justify-center mt4" },
@@ -62,15 +62,15 @@ const TableApp = {
                         m("span", { "class": "mr1 ml2" },
                             "Showing"
                         ),
-                        m("input", { "class": "mw3", "type": "number", "value": vnode.state.current.numRowsInTable, "name": "numRows", "id": "numRowsInTable" }),
+                        m("input", { "class": "mw3", "type": "number", "value": numRowsInTable, "name": "numRows", "id": "numRowsInTable" }),
                         m("span", { "class": "ph2 mr1 ml1" },
                             "rows out of"
                         ),
-                        m("input", { "class": "mw4", "type": "number", "value": vnode.state.current.totalRowsInArr, "name": "totalRows", "id": "totalRowsInArr" }),
+                        m("input", { "class": "mw4", "type": "number", "value": totalRowsInArr, "name": "totalRows", "id": "totalRowsInArr" }),
                         m("span", { "class": "ph2 mr1 ml1" },
                             "starting at row"
                         ),
-                        m("input", { "class": "mw3 mr2", "type": "number", "value": vnode.state.current.indexRowInTable, "name": "startRows", "id": "indexRowInTable" }),
+                        m("input", { "class": "mw3 mr2", "type": "number", "value": indexRowInTable, "name": "startRows", "id": "indexRowInTable" }),
                         m("div", { "class": "ba br--right br4 ml3 bg-blue", "id": "next-btns" },
                             [
                                 m("a", { "class": "f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa1 border-box", "href": "#0", "id": "nextLine" },
@@ -124,7 +124,7 @@ const TableApp = {
                     m("table", { "class": "f6 w-100 mw8 center b--black-20 ba", "cellspacing": "0" },
                         [
                             m("thead", { "id": "table-header" }, m(TableHeader)),
-                            m("tbody", { "class": "lh-copy", "id": "table-body" }, m(TableBody, {numRowsInTable: vnode.state.current.numRowsInTable, indexRowInTable: vnode.state.current.indexRowInTable, totalRowsInArr: vnode.state.current.totalRowsInArr }))
+                            m("tbody", { "class": "lh-copy", "id": "table-body" }, m(TableBody, {numRowsInTable: numRowsInTable, indexRowInTable: indexRowInTable, totalRowsInArr: totalRowsInArr }))
                         ]
                     )
                 )
