@@ -44,6 +44,16 @@ function indexRowHandler(event){
     return numOfRows;
 }
 
+function firstPageHandler(event){
+    return START_OF_ROW;
+}
+
+function lastPageHandler(numOfRowsValue, totalRowsValue){
+    let rowsLeft = totalRowsValue % numOfRowsValue;
+    let startIndex = (rowsLeft == 0) ? (totalRowsValue - numOfRowsValue + 1) : (totalRowsValue - rowsLeft + 1);
+    return parseInt(startIndex);
+}
+
 function showError(msg) {
     alert(msg);
 }
@@ -68,5 +78,7 @@ exports.tableHelper = {
     totalRowsInputHandler, 
     dataGenerate, 
     numRowsHandler,
-    indexRowHandler
+    indexRowHandler,
+    firstPageHandler,
+    lastPageHandler
 };

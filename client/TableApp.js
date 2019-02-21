@@ -19,7 +19,7 @@ const TableApp = {
                     [
                         m("div", { "class": "ba br--left br4 mr3 bg-blue", "id": "prev-btns" },
                             [
-                                m("a", { "class": "f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa1 border-box br--left br4", "href": "#0", "id": "firstPage" },
+                                m("a", { "class": "f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa1 border-box br--left br4", "href": "#0", "id": "firstPage", onclick: e =>  vnode.state.current.indexRowInTable = Helpers.tableHelper.firstPageHandler(e) },
                                     m("svg", { "class": "w1", "data-icon": "chevronLeft", "viewBox": "0 0 32 32", "style": { "fill": "currentcolor" } },
                                         [
                                             m("title",
@@ -106,7 +106,7 @@ const TableApp = {
                                         )
                                     ]
                                 ),
-                                m("a", { "class": "f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa1 border-box br--right br4", "href": "#0", "id": "lastPage" },
+                                m("a", { "class": "f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa1 border-box br--right br4", "href": "#0", "id": "lastPage", onclick: e => vnode.state.current.indexRowInTable = Helpers.tableHelper.lastPageHandler(numRowsInTable, totalRowsInArr) },
                                     m("svg", { "class": "w1", "data-icon": "chevronRight", "viewBox": "0 0 32 32", "style": { "fill": "currentcolor" } },
                                         [
                                             m("title",
