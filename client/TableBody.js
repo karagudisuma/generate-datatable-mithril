@@ -11,8 +11,13 @@ const TableBody = {
         let data = dataConstant.reportData.data;
         let reportData = [];
         let endOfSelection = indexRowInTable - 1 + numRowsInTable;
-        endOfSelection = ((indexRowInTable - 1 + numRowsInTable) > data.length) ? (data.length - indexRowInTable) : endOfSelection;
-        reportData = data.slice(indexRowInTable - 1, endOfSelection);
+        //When end of array is reached
+        if(endOfSelection > data.length){
+            reportData = data.slice(indexRowInTable);
+        }
+        else{
+            reportData = data.slice(indexRowInTable - 1, endOfSelection);
+        }
         let tBody =  reportData.map(data =>
             m("tr", { 'data-row-index': `${data[0]}` }, [
                 m("td", { class: " pr3 bb b--black-20 pl2" }, data[0]),
