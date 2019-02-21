@@ -10,6 +10,11 @@ const TableApp = {
         indexRowInTable: 1,
         btnEvent: 'none'
     },
+    oncreate: function(vnode) {
+        let query = `tr[data-row-index="${vnode.state.current.indexRowInTable}"]`; 
+        let activeRow = (document.querySelector(query));
+        activeRow.classList.add("bg-light-blue");
+    },
     view: function (vnode) {
         let { indexRowInTable, totalRowsInArr, numRowsInTable, btnEvent } = vnode.state.current;
  
