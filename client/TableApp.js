@@ -82,7 +82,25 @@ const TableApp = {
                                         )
                                     ]
                                 ),
-                                m("a", { "class": "f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa1 border-box", "href": "#0", "id": "prevLine" },
+                                m("a", {
+                                    "class": "f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa1 border-box", "href": "#0", "id": "prevLine",
+                                    onclick: e => {
+                                        let { activeRowId, indexRowInTable, numRowsInTable } = vnode.state.current;
+                                        activeRowId = parseInt(activeRowId) - 1;
+                                        indexRowInTable = parseInt(indexRowInTable);
+                                        numRowsInTable = parseInt(numRowsInTable);
+                                        if(activeRowId < 1){
+                                            indexRowInTable = totalRowsInArr - numRowsInTable + 1;
+                                            activeRowId = totalRowsInArr;
+                                        }
+                                        else if (activeRowId < indexRowInTable) {
+                                            indexRowInTable = indexRowInTable - numRowsInTable;
+                                            activeRowId = indexRowInTable;
+                                        }
+                                        vnode.state.current.activeRowId = activeRowId;
+                                        vnode.state.current.indexRowInTable = indexRowInTable;
+                                    }
+                                },
                                     m("svg", { "class": "w1", "data-icon": "chevronLeft", "viewBox": "0 0 32 32", "style": { "fill": "currentcolor" } },
                                         [
                                             m("title",
@@ -118,11 +136,13 @@ const TableApp = {
                         m("span", { "class": "ph2 mr1 ml1" },
                             "starting at row"
                         ),
-                        m("input", { "class": "mw3 mr2", "type": "number", "value": indexRowInTable, "name": "startRows", "id": "indexRowInTable", 
-                        onkeyup: e => {
-                            vnode.state.current.indexRowInTable = Helpers.tableHelper.indexRowHandler(e);
-                            vnode.state.current.activeRowId = vnode.state.current.indexRowInTable;
-                        }}),
+                        m("input", {
+                            "class": "mw3 mr2", "type": "number", "value": indexRowInTable, "name": "startRows", "id": "indexRowInTable",
+                            onkeyup: e => {
+                                vnode.state.current.indexRowInTable = Helpers.tableHelper.indexRowHandler(e);
+                                vnode.state.current.activeRowId = vnode.state.current.indexRowInTable;
+                            }
+                        }),
                         m("div", { "class": "ba br--right br4 ml3 bg-blue", "id": "next-btns" },
                             [
                                 m("a", {
@@ -132,7 +152,11 @@ const TableApp = {
                                         activeRowId = parseInt(activeRowId) + 1;
                                         indexRowInTable = parseInt(indexRowInTable);
                                         numRowsInTable = parseInt(numRowsInTable);
-                                        if (activeRowId > (indexRowInTable + numRowsInTable - 1)) {
+                                        if(activeRowId > totalRowsInArr){
+                                            indexRowInTable = 1;
+                                            activeRowId = indexRowInTable;
+                                        }
+                                        else if (activeRowId > (indexRowInTable + numRowsInTable - 1)) {
                                             indexRowInTable = indexRowInTable + numRowsInTable;
                                             activeRowId = indexRowInTable;
                                         }
