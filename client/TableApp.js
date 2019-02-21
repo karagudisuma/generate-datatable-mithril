@@ -2,14 +2,16 @@ const m = require('mithril');
 const TableBody = require('./TableBody');
 const TableHeader = require('./TableHeader');
 const Helpers = require('./TableHelper.js');
- 
 
 const TableApp = {
-    oninit: function(data){
-        this.tableHelper = new Helpers.tableHelper(10, 100, 1);
+    current: {
+        numRowsInTable: 10,
+        totalRowsInArr: 100,
+        indexRowInTable: 1
     },
-    view: function (ctrl) {
-        let {indexRowInTable, totalRowsInArr, numRowsInTable} = ctrl.state.tableHelper;
+    view: function (vnode) {
+        let { indexRowInTable, totalRowsInArr, numRowsInTable } = vnode.state.current;
+        console.log(vnode.state.current.totalRowsInArr);
         return m("div", { "class": "pt1 pb1 mv3 mh6-l bg-light-gray" },
             m("div",
                 m("div", { "class": "flex items-center justify-center mt4" },
@@ -66,7 +68,7 @@ const TableApp = {
                         m("span", { "class": "ph2 mr1 ml1" },
                             "rows out of"
                         ),
-                        m("input", { "class": "mw4", "type": "number", "value": totalRowsInArr, "name": "totalRows", "id": "totalRowsInArr" }),
+                        m("input", { "class": "mw4", "type": "number", "value": vnode.state.current.totalRowsInArr, "name": "totalRows", "id": "totalRowsInArr", onkeyup: e => vnode.state.current.totalRowsInArr = Helpers.tableHelper.totalRowsInputHandler(e), onfocusout: e => Helpers.tableHelper.dataGenerate(e) }),
                         m("span", { "class": "ph2 mr1 ml1" },
                             "starting at row"
                         ),
@@ -124,7 +126,7 @@ const TableApp = {
                     m("table", { "class": "f6 w-100 mw8 center b--black-20 ba", "cellspacing": "0" },
                         [
                             m("thead", { "id": "table-header" }, m(TableHeader)),
-                            m("tbody", { "class": "lh-copy", "id": "table-body" }, m(TableBody, {numRowsInTable: numRowsInTable, indexRowInTable: indexRowInTable, totalRowsInArr: totalRowsInArr }))
+                            m("tbody", { "class": "lh-copy", "id": "table-body" }, m(TableBody, { numRowsInTable: numRowsInTable, indexRowInTable: indexRowInTable, totalRowsInArr: totalRowsInArr }))
                         ]
                     )
                 )

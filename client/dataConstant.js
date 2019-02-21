@@ -13,6 +13,7 @@ function generateData(rowNum){
 	let i;
 	//Flush array before loading data.
 	reportData.data = [];
+	rowNum = parseInt(rowNum);
 	for(i = 1; i <= rowNum; i++){
 		reportData.data.push([`${i}`, `Column_1_Row_${i}_Data`, `Column_2_Row_${i}_Data`, `Column_3_Row_${i}_Data`, `Column_4_Row_${i}_Data`,]);
 	}

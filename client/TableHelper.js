@@ -4,23 +4,23 @@ const MAX_ALLOWED_DATA = 1000000;
 const MAX_ALLOWED_ROWS_PER_PAGE = 1000;
 const START_OF_ROW = 1;
 
-function TableHelper(numRowsInTable, totalRowsInArr, indexRowInTable) {
-    this.indexRowInTable = indexRowInTable;
-    this.totalRowsInArr = totalRowsInArr;
-    this.numRowsInTable = numRowsInTable;
-    this.totalRowsHandler = (event) => {
-        //On enter press
-        if (event.keyCode === 13) {
-            let numOfRows = event.target.value;
-            let validRange = isAllowedLen(numOfRows, MAX_ALLOWED_DATA);
-            if (validRange){
-                dataConstant.generateData(numOfRows);
-            }
-            else{
-                this.totalRowsInArr = 100;
-            }
-        }
+function totalRowsInputHandler(event) {
+    let inputValue = 100;
+    //On enter press
+    let numOfRows = event.target.value;
+    let validRange = isAllowedLen(numOfRows, MAX_ALLOWED_DATA);
+    if (validRange){
+        inputValue = numOfRows;
     }
+    return inputValue;
+}
+
+function dataGenerate(event){
+    let validRange = isAllowedLen(event.target.value, MAX_ALLOWED_DATA);
+    if (validRange){
+        dataConstant.generateData(event.target.value);
+    }
+    
 }
 
 function showError(msg) {
@@ -43,4 +43,4 @@ function isAllowedLen(inputSize, maxLen) {
     return true;
 }
 
-exports.tableHelper = TableHelper;
+exports.tableHelper = { totalRowsInputHandler, dataGenerate };

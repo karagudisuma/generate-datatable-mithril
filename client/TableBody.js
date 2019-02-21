@@ -2,14 +2,12 @@ const m = require("mithril");
 const dataConstant = require("./dataConstant.js");
 
 const TableBody = {
-  current: {
-    data: dataConstant.reportData.data
-  },
   view: function(vnode) {
     let indexRowInTable = vnode.attrs.indexRowInTable;
     let totalRowsInArr = vnode.attrs.totalRowsInArr;
     let numRowsInTable = vnode.attrs.numRowsInTable;
-    let reportData = vnode.state.current.data.splice(indexRowInTable, numRowsInTable);
+    let data = dataConstant.reportData.data;
+    let reportData = data.slice(indexRowInTable - 1, numRowsInTable);
     let i, tBody = "";
     return reportData.map(data =>
       m("tr", { "data-row-index": i }, [
