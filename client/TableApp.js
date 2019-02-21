@@ -95,7 +95,6 @@ const TableApp = {
                                         }
                                         else if (activeRowId < indexRowInTable) {
                                             indexRowInTable = indexRowInTable - numRowsInTable;
-                                            activeRowId = indexRowInTable;
                                         }
                                         vnode.state.current.activeRowId = activeRowId;
                                         vnode.state.current.indexRowInTable = indexRowInTable;
