@@ -3,20 +3,34 @@ const TableBody = require('./TableBody');
 const TableHeader = require('./TableHeader');
 const Helpers = require('./TableHelper.js');
 
+function highlightActiveRow(vnode){
+    let activeRow = document.querySelector(".bg-light-blue");
+    if (activeRow) {
+        activeRow.classList.remove("bg-light-blue");
+    }
+
+    let query = `tr[data-row-index="${vnode.state.current.activeRowId}"]`; 
+    activeRow = (document.querySelector(query));
+    if (activeRow) {
+        activeRow.classList.add("bg-light-blue");
+    }
+}
+
 const TableApp = {
     current: {
         numRowsInTable: 10,
         totalRowsInArr: 100,
         indexRowInTable: 1,
-        btnEvent: 'none'
+        activeRowId: 1
     },
     oncreate: function(vnode) {
-        let query = `tr[data-row-index="${vnode.state.current.indexRowInTable}"]`; 
-        let activeRow = (document.querySelector(query));
-        activeRow.classList.add("bg-light-blue");
+        highlightActiveRow(vnode);
+    },
+    onupdate: function(vnode){
+        highlightActiveRow(vnode);
     },
     view: function (vnode) {
-        let { indexRowInTable, totalRowsInArr, numRowsInTable, btnEvent } = vnode.state.current;
+        let { indexRowInTable, totalRowsInArr, numRowsInTable } = vnode.state.current;
  
         return m("div", { "class": "pt1 pb1 mv3 mh6-l bg-light-gray" },
             m("div",
@@ -132,7 +146,7 @@ const TableApp = {
                     m("table", { "class": "f6 w-100 mw8 center b--black-20 ba", "cellspacing": "0" },
                         [
                             m("thead", { "id": "table-header" }, m(TableHeader)),
-                            m("tbody", { "class": "lh-copy", "id": "table-body" }, m(TableBody, { numRowsInTable, indexRowInTable, totalRowsInArr, btnEvent }))
+                            m("tbody", { "class": "lh-copy", "id": "table-body" }, m(TableBody, { numRowsInTable, indexRowInTable, totalRowsInArr }))
                         ]
                     )
                 )
