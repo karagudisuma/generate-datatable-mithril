@@ -7,10 +7,11 @@ const TableApp = {
     current: {
         numRowsInTable: 10,
         totalRowsInArr: 100,
-        indexRowInTable: 1
+        indexRowInTable: 1,
+        btnEvent: 'none'
     },
     view: function (vnode) {
-        let { indexRowInTable, totalRowsInArr, numRowsInTable } = vnode.state.current;
+        let { indexRowInTable, totalRowsInArr, numRowsInTable, btnEvent } = vnode.state.current;
  
         return m("div", { "class": "pt1 pb1 mv3 mh6-l bg-light-gray" },
             m("div",
@@ -126,7 +127,7 @@ const TableApp = {
                     m("table", { "class": "f6 w-100 mw8 center b--black-20 ba", "cellspacing": "0" },
                         [
                             m("thead", { "id": "table-header" }, m(TableHeader)),
-                            m("tbody", { "class": "lh-copy", "id": "table-body" }, m(TableBody, { numRowsInTable: numRowsInTable, indexRowInTable: indexRowInTable, totalRowsInArr: totalRowsInArr }))
+                            m("tbody", { "class": "lh-copy", "id": "table-body" }, m(TableBody, { numRowsInTable, indexRowInTable, totalRowsInArr, btnEvent }))
                         ]
                     )
                 )
