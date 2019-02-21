@@ -20,7 +20,17 @@ function dataGenerate(event){
     if (validRange){
         dataConstant.generateData(event.target.value);
     }
-    
+}
+
+function numRowsHandler(event){
+    let numOfRows = event.target.value;
+    let reportDataLength = dataConstant.reportData.data.length;
+    let validRange = isAllowedLen(numOfRows, MAX_ALLOWED_ROWS_PER_PAGE);
+    let validLen = withinArrayLen(numOfRows, reportDataLength);
+    if(!validLen || !validRange){
+        numOfRows = 10;
+    }
+    return numOfRows;
 }
 
 function showError(msg) {
@@ -43,4 +53,8 @@ function isAllowedLen(inputSize, maxLen) {
     return true;
 }
 
-exports.tableHelper = { totalRowsInputHandler, dataGenerate };
+exports.tableHelper = { 
+    totalRowsInputHandler, 
+    dataGenerate, 
+    numRowsHandler 
+};

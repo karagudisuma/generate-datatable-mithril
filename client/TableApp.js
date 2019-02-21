@@ -64,7 +64,7 @@ const TableApp = {
                         m("span", { "class": "mr1 ml2" },
                             "Showing"
                         ),
-                        m("input", { "class": "mw3", "type": "number", "value": numRowsInTable, "name": "numRows", "id": "numRowsInTable" }),
+                        m("input", { "class": "mw3", "type": "number", "value": numRowsInTable, "name": "numRows", "id": "numRowsInTable", onkeyup: e => vnode.state.current.numRowsInTable = Helpers.tableHelper.numRowsHandler(e) }),
                         m("span", { "class": "ph2 mr1 ml1" },
                             "rows out of"
                         ),
