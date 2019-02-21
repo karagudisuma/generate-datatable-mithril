@@ -105,7 +105,7 @@ const TableApp = {
                                         ]
                                     )
                                 ),
-                                m("a", { "class": "f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa1 ph2 border-box", "href": "#0", "id": "nextPage" },
+                                m("a", { "class": "f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa1 ph2 border-box", "href": "#0", "id": "nextPage" , onclick: e => vnode.state.current.indexRowInTable = Helpers.tableHelper.nextPageHandler(numRowsInTable, totalRowsInArr, indexRowInTable)},
                                     [
                                         m("svg", { "class": "w1", "data-icon": "chevronRight", "viewBox": "0 0 32 32", "style": { "fill": "currentcolor" } },
                                             [
