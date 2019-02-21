@@ -62,6 +62,14 @@ function nextPageHandler(numOfRowsValue, totalRowsValue, indexRowValue){
     return (nextIndex <= totalRowsValue) ? nextIndex : START_OF_ROW;
 }
 
+function prevPageHandler(numOfRowsValue, totalRowsValue, indexRowValue){
+    indexRowValue = parseInt(indexRowValue);
+    numOfRowsValue = parseInt(numOfRowsValue);
+    let prevIndex = indexRowValue - numOfRowsValue;
+    totalRowsValue = parseInt(totalRowsValue);
+    return (prevIndex < START_OF_ROW) ? (totalRowsValue - numOfRowsValue + 1) : prevIndex;
+}
+
 function showError(msg) {
     alert(msg);
 }
@@ -89,5 +97,6 @@ exports.tableHelper = {
     indexRowHandler,
     firstPageHandler,
     lastPageHandler,
-    nextPageHandler
+    nextPageHandler,
+    prevPageHandler
 };
