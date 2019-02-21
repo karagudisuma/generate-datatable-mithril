@@ -33,6 +33,17 @@ function numRowsHandler(event){
     return numOfRows;
 }
 
+function indexRowHandler(event){
+    let numOfRows = event.target.value;
+    let reportDataLength = dataConstant.reportData.data.length;
+    let validRange = isAllowedLen(numOfRows, MAX_ALLOWED_DATA);
+    let validLen = withinArrayLen(numOfRows, reportDataLength);
+    if(!validLen || !validRange){
+        numOfRows = 1;
+    }
+    return numOfRows;
+}
+
 function showError(msg) {
     alert(msg);
 }
@@ -56,5 +67,6 @@ function isAllowedLen(inputSize, maxLen) {
 exports.tableHelper = { 
     totalRowsInputHandler, 
     dataGenerate, 
-    numRowsHandler 
+    numRowsHandler,
+    indexRowHandler
 };

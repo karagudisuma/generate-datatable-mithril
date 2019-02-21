@@ -3,11 +3,11 @@ const dataConstant = require("./dataConstant.js");
 
 const TableBody = {
   view: function(vnode) {
-    let indexRowInTable = vnode.attrs.indexRowInTable;
-    let totalRowsInArr = vnode.attrs.totalRowsInArr;
-    let numRowsInTable = vnode.attrs.numRowsInTable;
+    let indexRowInTable = parseInt(vnode.attrs.indexRowInTable);
+    let totalRowsInArr = parseInt(vnode.attrs.totalRowsInArr);
+    let endOfSelection = indexRowInTable - 1 + parseInt(vnode.attrs.numRowsInTable);
     let data = dataConstant.reportData.data;
-    let reportData = data.slice(indexRowInTable - 1, numRowsInTable);
+    let reportData = data.slice(indexRowInTable - 1, endOfSelection);
     let i, tBody = "";
     return reportData.map(data =>
       m("tr", { "data-row-index": i }, [

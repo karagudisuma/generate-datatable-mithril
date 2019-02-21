@@ -11,7 +11,7 @@ const TableApp = {
     },
     view: function (vnode) {
         let { indexRowInTable, totalRowsInArr, numRowsInTable } = vnode.state.current;
-        console.log(vnode.state.current.totalRowsInArr);
+ 
         return m("div", { "class": "pt1 pb1 mv3 mh6-l bg-light-gray" },
             m("div",
                 m("div", { "class": "flex items-center justify-center mt4" },
@@ -68,11 +68,11 @@ const TableApp = {
                         m("span", { "class": "ph2 mr1 ml1" },
                             "rows out of"
                         ),
-                        m("input", { "class": "mw4", "type": "number", "value": vnode.state.current.totalRowsInArr, "name": "totalRows", "id": "totalRowsInArr", onkeyup: e => vnode.state.current.totalRowsInArr = Helpers.tableHelper.totalRowsInputHandler(e), onfocusout: e => Helpers.tableHelper.dataGenerate(e) }),
+                        m("input", { "class": "mw4", "type": "number", "value": totalRowsInArr, "name": "totalRows", "id": "totalRowsInArr", onkeyup: e => vnode.state.current.totalRowsInArr = Helpers.tableHelper.totalRowsInputHandler(e), onfocusout: e => Helpers.tableHelper.dataGenerate(e) }),
                         m("span", { "class": "ph2 mr1 ml1" },
                             "starting at row"
                         ),
-                        m("input", { "class": "mw3 mr2", "type": "number", "value": indexRowInTable, "name": "startRows", "id": "indexRowInTable" }),
+                        m("input", { "class": "mw3 mr2", "type": "number", "value": indexRowInTable, "name": "startRows", "id": "indexRowInTable", onkeyup: e => vnode.state.current.indexRowInTable = Helpers.tableHelper.indexRowHandler(e) }),
                         m("div", { "class": "ba br--right br4 ml3 bg-blue", "id": "next-btns" },
                             [
                                 m("a", { "class": "f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa1 border-box", "href": "#0", "id": "nextLine" },
