@@ -7,7 +7,7 @@ const START_OF_ROW = 1;
 function totalRowsInputHandler(event) {
     let inputValue = 100;
     //On enter press
-    let numOfRows = event.target.value;
+    let numOfRows = parseInt(event.target.value);
     let validRange = isAllowedLen(numOfRows, MAX_ALLOWED_DATA);
     if (validRange){
         inputValue = numOfRows;
@@ -23,7 +23,7 @@ function dataGenerate(event){
 }
 
 function numRowsHandler(event){
-    let numOfRows = event.target.value;
+    let numOfRows = parseInt(event.target.value);
     let reportDataLength = dataConstant.reportData.data.length;
     let validRange = isAllowedLen(numOfRows, MAX_ALLOWED_ROWS_PER_PAGE);
     let validLen = withinArrayLen(numOfRows, reportDataLength);
@@ -34,7 +34,7 @@ function numRowsHandler(event){
 }
 
 function indexRowHandler(event){
-    let numOfRows = event.target.value;
+    let numOfRows = parseInt(event.target.value);
     let reportDataLength = dataConstant.reportData.data.length;
     let validRange = isAllowedLen(numOfRows, MAX_ALLOWED_DATA);
     let validLen = withinArrayLen(numOfRows, reportDataLength);
@@ -51,22 +51,16 @@ function firstPageHandler(event){
 function lastPageHandler(numOfRowsValue, totalRowsValue){
     let rowsLeft = totalRowsValue % numOfRowsValue;
     let startIndex = (rowsLeft == 0) ? (totalRowsValue - numOfRowsValue + 1) : (totalRowsValue - rowsLeft + 1);
-    return parseInt(startIndex);
+    return startIndex;
 }
 
 function nextPageHandler(numOfRowsValue, totalRowsValue, indexRowValue){
-    indexRowValue = parseInt(indexRowValue);
-    numOfRowsValue = parseInt(numOfRowsValue);
     let nextIndex = indexRowValue + numOfRowsValue;
-    totalRowsValue = parseInt(totalRowsValue);
     return (nextIndex <= totalRowsValue) ? nextIndex : START_OF_ROW;
 }
 
 function prevPageHandler(numOfRowsValue, totalRowsValue, indexRowValue){
-    indexRowValue = parseInt(indexRowValue);
-    numOfRowsValue = parseInt(numOfRowsValue);
     let prevIndex = indexRowValue - numOfRowsValue;
-    totalRowsValue = parseInt(totalRowsValue);
     return (prevIndex < START_OF_ROW) ? (totalRowsValue - numOfRowsValue + 1) : prevIndex;
 }
 
@@ -75,7 +69,7 @@ function showError(msg) {
 }
 
 function withinArrayLen(inputSize, maxSize) {
-    if (parseInt(inputSize) > parseInt(maxSize)) {
+    if (inputSize > maxSize) {
         showError('Number is exceeding the input data size.');
         return false;
     }
@@ -83,7 +77,7 @@ function withinArrayLen(inputSize, maxSize) {
 }
 
 function isAllowedLen(inputSize, maxLen) {
-    if (parseInt(inputSize) > parseInt(maxLen)) {
+    if (inputSize > maxLen) {
         showError('Number is exceeding the allowed limit.');
         return false;
     }

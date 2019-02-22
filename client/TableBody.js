@@ -5,9 +5,6 @@ const dataConstant = require("./dataConstant.js");
 const TableBody = {
     view: function (vnode) {
         let {indexRowInTable, totalRowsInArr, numRowsInTable} = vnode.attrs;
-        indexRowInTable = parseInt(indexRowInTable);
-        totalRowsInArr = parseInt(totalRowsInArr);
-        numRowsInTable = parseInt(numRowsInTable);
         let data = dataConstant.reportData.data;
         let reportData = [];
         let endOfSelection = indexRowInTable - 1 + numRowsInTable;

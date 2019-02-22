@@ -86,15 +86,13 @@ const TableApp = {
                                     "class": "f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa1 border-box", "href": "#0", "id": "prevLine",
                                     onclick: e => {
                                         let { activeRowId, indexRowInTable, numRowsInTable } = vnode.state.current;
-                                        activeRowId = parseInt(activeRowId) - 1;
-                                        indexRowInTable = parseInt(indexRowInTable);
-                                        numRowsInTable = parseInt(numRowsInTable);
+                                        activeRowId = activeRowId - 1;
                                         if(activeRowId < 1){
                                             indexRowInTable = totalRowsInArr - numRowsInTable + 1;
                                             activeRowId = totalRowsInArr;
                                         }
                                         else if (activeRowId < indexRowInTable) {
-                                            indexRowInTable = indexRowInTable - numRowsInTable;
+                                            indexRowInTable = Math.abs(indexRowInTable - numRowsInTable);
                                         }
                                         vnode.state.current.activeRowId = activeRowId;
                                         vnode.state.current.indexRowInTable = indexRowInTable;
@@ -148,9 +146,7 @@ const TableApp = {
                                     "class": "f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa1 border-box", "href": "#0", "id": "nextLine",
                                     onclick: e => {
                                         let { activeRowId, indexRowInTable, numRowsInTable } = vnode.state.current;
-                                        activeRowId = parseInt(activeRowId) + 1;
-                                        indexRowInTable = parseInt(indexRowInTable);
-                                        numRowsInTable = parseInt(numRowsInTable);
+                                        activeRowId = activeRowId + 1;
                                         if(activeRowId > totalRowsInArr){
                                             indexRowInTable = 1;
                                             activeRowId = indexRowInTable;
