@@ -3,7 +3,7 @@ const dataConstant = require("./dataConstant.js");
 
 const TableHeader = {
     view: function () {
-        cols = dataConstant.reportData.cols;
+        let cols = dataConstant.reportData.cols;
         return m("tr", [
             m("th", { class: "fw6 bb b--black-20 tl pb1 pr3" }),
             m("th", { class: "fw6 bb bl b--black-20 tl tc pb1 pr3" }, cols[1]),

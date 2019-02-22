@@ -112,7 +112,7 @@ const TableApp = {
                             "Showing"
                         ),
                         m("input", {
-                            "class": "mw3", "type": "number", "value": numRowsInTable, "name": "numRows", "id": "numRowsInTable", "autofocus":"autofocus",
+                            "class": "mw3", "type": "number", "value": numRowsInTable, "name": "numRows", "id": "numRowsInTable", "autofocus" : "autofocus",
                             onkeyup: e => {
                                 vnode.state.current.numRowsInTable = Helpers.tableHelper.numRowsHandler(e);
                                 vnode.state.current.activeRowId = vnode.state.current.indexRowInTable;
