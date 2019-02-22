@@ -1,0 +1,2 @@
+This project is table generater for data upto 1000000, with controls for number of rows to be displayed, starting index from which table has to be rendered, goto function for Previous Line, Next Line, Previous Page, Next Page, Last page and First Page.
+Project built with mithril.js, tachyons.css, HTML, CSS.

@@ -30,7 +30,7 @@ const TableApp = {
         highlightActiveRow(vnode);
     },
     view: function (vnode) {
-        let { indexRowInTable, totalRowsInArr, numRowsInTable, activeRowId } = vnode.state.current;
+        let { indexRowInTable, totalRowsInArr, numRowsInTable } = vnode.state.current;
 
         return m("div", { "class": "pt1 pb1 mv3 mh6-l bg-light-gray" },
             m("div",
