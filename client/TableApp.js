@@ -3,19 +3,6 @@ const TableBody = require('./TableBody');
 const TableHeader = require('./TableHeader');
 const Helpers = require('./TableHelper.js');
 
-function highlightActiveRow(vnode) {
-    let activeRow = document.querySelector(".bg-light-blue");
-    if (activeRow) {
-        activeRow.classList.remove("bg-light-blue");
-    }
-
-    let query = `tr[data-row-index="${vnode.state.current.activeRowId}"]`;
-    activeRow = (document.querySelector(query));
-    if (activeRow) {
-        activeRow.classList.add("bg-light-blue");
-    }
-}
-
 const TableApp = {
     current: {
         numRowsInTable: 10,
@@ -23,11 +10,23 @@ const TableApp = {
         indexRowInTable: 1,
         activeRowId: 1
     },
+    highlightActiveRow: function(vnode) {
+        let activeRow = document.querySelector(".bg-light-blue");
+        if (activeRow) {
+            activeRow.classList.remove("bg-light-blue");
+        }
+    
+        let query = `tr[data-row-index="${vnode.state.current.activeRowId}"]`;
+        activeRow = (document.querySelector(query));
+        if (activeRow) {
+            activeRow.classList.add("bg-light-blue");
+        }
+    },
     oncreate: function (vnode) {
-        highlightActiveRow(vnode);
+        this.highlightActiveRow(vnode);
     },
     onupdate: function (vnode) {
-        highlightActiveRow(vnode);
+        this.highlightActiveRow(vnode);
     },
     view: function (vnode) {
         let { indexRowInTable, totalRowsInArr, numRowsInTable } = vnode.state.current;
